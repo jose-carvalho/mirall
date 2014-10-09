@@ -20,6 +20,8 @@ fix_frameworks() {
         mkdir -p "${FMWK_PATH}/Versions/${QT_FMWK_VERSION}/Resources/"
         cp -avf "${QT_FMWK_PATH}/${FMWK}/Contents/Info.plist" "${FMWK_PATH}/Versions/${QT_FMWK_VERSION}/Resources"
         (cd "${FMWK_PATH}" && ln -sf "Versions/${QT_FMWK_VERSION}/Resources" "Resources")
+	    (cd "${FMWK_PATH}" && ln -s "Versions/${QT_FMWK_VERSION}/${FMWK_NAME}" "${FMWK_NAME}")
+	    (cd "${FMWK_PATH}/Versions" &&  ln -s "${QT_FMWK_VERSION}" "Current")
         perl -pi -e "s/${FMWK_NAME}_debug/${FMWK_NAME}/" "${FMWK_PATH}/Resources/Info.plist"
     done
 }
